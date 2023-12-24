@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from . import __version__ as app_version
 from . import __logo__ as app_logo
+from whitelabel.override_template import override_template
 
 
 app_name = "whitelabel"
@@ -17,9 +18,12 @@ app_logo_url = '/assets/whitelabel/images/whitelabel_logo.jpg'
 # Includes in <head>
 # ------------------
 
+app_startup = [override_template]
+
 # include js, css files in header of desk.html
 app_include_css = "/assets/whitelabel/css/whitelabel_app.css"
 app_include_js = "/assets/whitelabel/js/whitelabel.js"
+# app_include_js = "/assets/whitelabel/js/wl-desk.js"
 
 # include js, css files in header of web template
 web_include_css = "/assets/whitelabel/css/whitelabel_web.css"
@@ -136,6 +140,22 @@ boot_session = "whitelabel.api.boot_session"
 # override_doctype_dashboards = {
 # 	"Task": "whitelabel.task.get_dashboard_data"
 # }
+
+
+override_doctype_class = {
+    "*": "whitelabel.templates"
+}
+
+# override_template = {
+#     # Root templates
+#     "frappe/templates/base.html": "whitelabel/templates/base.html",
+#     "frappe/templates/doc.html": "whitelabel/templates/doc.html"
+
+# }
+
+
+# For including additional templates from your app
+# app_include_template = "whitelabel/templates/includes"
 
 override_whitelisted_methods = {
 	"frappe.utils.change_log.show_update_popup": "whitelabel.api.ignore_update_popup"
